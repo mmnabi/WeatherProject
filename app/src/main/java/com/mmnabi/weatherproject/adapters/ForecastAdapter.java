@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mmnabi.weatherproject.R;
+import com.mmnabi.weatherproject.activities.MainActivity;
+import com.mmnabi.weatherproject.common.helpers.WeatherServiceHelper;
 import com.mmnabi.weatherproject.models.ForecastDTO;
 import com.squareup.picasso.Picasso;
 
@@ -43,14 +45,25 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         Uri uri = Uri.parse("http://api.openweathermap.org/img/w/" + icon);
         Picasso.with(context).load(uri).into(holder.ivIcon);
 
-        holder.tvCityF.setText(dto.getCityName());
-        holder.tvDate.setText(dto.getDate());
-        holder.tvWeatherMain.setText(dto.getMainWeather());
-        holder.tvWind.setText("Wind : " + dto.getWind() + "m/s");
-        holder.tvTemperature.setText(dto.getTemperature() + "°C");
-        holder.tvWeatherDescription.setText(dto.getDescription());
-        holder.tvMaxMin.setText(dto.getMax() + "/" + dto.getMin());
-        holder.tvPressure.setText("Pressure : " + dto.getPressure());
+        if (MainActivity.UNIT_SELECTED.equals(WeatherServiceHelper.UNIT_METRIC)) {
+            holder.tvCityF.setText(dto.getCityName());
+            holder.tvDate.setText(dto.getDate());
+            holder.tvWeatherMain.setText(dto.getMainWeather());
+            holder.tvWind.setText("Wind : " + dto.getWind() + "m/s");
+            holder.tvTemperature.setText(dto.getTemperature() + "°C");
+            holder.tvWeatherDescription.setText(dto.getDescription());
+            holder.tvMaxMin.setText(dto.getMax() + "°C/" + dto.getMin() + "°C");
+            holder.tvPressure.setText("Pressure : " + dto.getPressure() + "hPa");
+        } else {
+            holder.tvCityF.setText(dto.getCityName());
+            holder.tvDate.setText(dto.getDate());
+            holder.tvWeatherMain.setText(dto.getMainWeather());
+            holder.tvWind.setText("Wind : " + dto.getWind() + "meter/sec");
+            holder.tvTemperature.setText(dto.getTemperature() + "°F");
+            holder.tvWeatherDescription.setText(dto.getDescription());
+            holder.tvMaxMin.setText(dto.getMax() + "°F/" + dto.getMin() + "°F");
+            holder.tvPressure.setText("Pressure : " + dto.getPressure() + "hPa");
+        }
     }
 
     @Override
