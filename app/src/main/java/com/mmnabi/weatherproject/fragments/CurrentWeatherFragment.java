@@ -188,15 +188,28 @@ public class CurrentWeatherFragment extends Fragment implements WeatherServiceHe
 
 
         // set the values
-        tvTemperature.setText(temperature + "°C");
-        tvDate.setText(date);
-        tvHumidity.setText("Humidity: " + humidity + "%");
-        tvCityF.setText(city);
-        tvWeatherMain.setText(mainWeather);
-        tvWind.setText("Wind: " + wind + "km/H");
-        tvTime.setText(time);
-        tvMaxMin.setText("Max/Min: " + max + "/" + min + "°C");
-        tvPressure.setText(pressure + " hPa");
+
+        if (MainActivity.UNIT_SELECTED.equals(WeatherServiceHelper.UNIT_METRIC)) {
+            tvTemperature.setText(temperature + "°C");
+            tvDate.setText(date);
+            tvHumidity.setText("Humidity: " + humidity + "%");
+            tvCityF.setText(city);
+            tvWeatherMain.setText(mainWeather);
+            tvWind.setText("Wind: " + wind + "meter/sec");
+            tvTime.setText(time);
+            tvMaxMin.setText("Max/Min: " + max + "°C/" + min + "°C");
+            tvPressure.setText(pressure + " hPa");
+        } else {
+            tvTemperature.setText(temperature + "°F");
+            tvDate.setText(date);
+            tvHumidity.setText("Humidity: " + humidity + "%");
+            tvCityF.setText(city);
+            tvWeatherMain.setText(mainWeather);
+            tvWind.setText("Wind: " + wind + "miles/hour");
+            tvTime.setText(time);
+            tvMaxMin.setText("Max/Min: " + max + "°F/" + min + "°F");
+            tvPressure.setText(pressure + " hPa");
+        }
 
 
         // set the icon
