@@ -63,6 +63,8 @@ public class LocationServiceHelper {
                                     .LENGTH_SHORT).show();
                             Log.d("location", "onLocationResult: " + latitude + " " + longitude);
 //                            stopLocationUpdates();
+                        } else {
+                            mListener.onLatLonReceived(latitude, longitude);
                         }
 
                         Log.d("location", "onLocationResult: " + latitude + " " + longitude);
